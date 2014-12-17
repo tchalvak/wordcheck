@@ -15,7 +15,7 @@ $files = array(
 $expected_results = array(
 	'wherefore',
 	'people',
-	'jabberwock',
+	'beware',
 	'people');
 
 // Simple function to take files in and return their most lettered word
