@@ -52,9 +52,9 @@ function find_most_lettered_word($path){
 		foreach(count_chars($word, 1) as $i => $count){
 			if($count>$max_character_count){
 				$winner = $word; // Update the winner.
+				$max_character_count = $count; // Update the max count.
 			}
 		}
-
 	}
 
 	// return the winning word
