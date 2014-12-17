@@ -1,4 +1,8 @@
 <?php
+// Excuse me for over-engineering here slightly to show a more TDD-like process.
+
+
+
 
 //  List the files to check through, and run through each file, creating the output from each.
 $files = array(
@@ -12,7 +16,7 @@ $expected_results = array(
 	'wherefore',
 	'people',
 	'jabberwock',
-	'people',
+	'people');
 
 // Simple function to take files in and return their most lettered word
 function find_most_lettered_word($path){
@@ -26,23 +30,43 @@ function find_most_lettered_word($path){
 
 	// Normalize the text first:
 	// Make everything lowercase
+	$normalized = strtolower($contents);
 	// Strip multiple whitespaces
+	$normalized = preg_replace('/\s+/', ' ',$normalized);
 	// Filter to alphanumeric and spaces
+	$normalized = preg_replace("/[^0-9a-zA-Z ]/", "", $normalized);
 
-	// Tokenize the string into words.
+	// Just explode the string into words.
+	$words = explode(' ', $normalized);
+
 
 	// Store the winning word (none to start)
+	$winner = null;
 	// Store the max character count (0 to start)
+	$max_character_count = 0;
 	// Get a character count per wordletter, store the max character count.
+	foreach($words as $word){
+
+	}
 	// If the max is more than the stored max, change the winning word.
 
 	// return the winning word
-
-
+	return null; // 
 }
 
 
-
+$results = array();
 // Loop over the text cases and get their outputs
+foreach($files as $index=>$file){
+	$winner = find_most_lettered_word($file);
+	$results[$index] = $winner;
+}
 
 // Check each output against each expected result.
+foreach($expected_results as $index=>$word){
+	if($word !== $results[$index]){
+		echo 'Test failed: expected ['.$word.'] but got ['.$results[$index].']'."\n";
+	} else {
+		echo 'Test of ['.$word.'] passed!'."\n";
+	}
+}
