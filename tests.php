@@ -18,7 +18,7 @@ $expected_results = array(
 	'people',
 	'beware',
 	'people',
-	'god knows what the word is for moby dick');
+	'reefscommerce');  // This does not sound like a real word, but that's herman melville's fault
 
 // Simple function to take files in and return their most lettered word
 function find_most_lettered_word($path){
