@@ -9,14 +9,16 @@ $files = array(
 	'./romeo.txt',
 	'./rain.txt',
 	'./jabberwock.txt',
-	'./alice.txt');
+	'./alice.txt',
+	'./moby.txt');
 // I added an additional set of test cases just to make sure the process was working beyond the two examples.
 
 $expected_results = array(
 	'wherefore',
 	'people',
 	'beware',
-	'people');
+	'people',
+	'god knows what the word is for moby dick');
 
 // Simple function to take files in and return their most lettered word
 function find_most_lettered_word($path){
