@@ -7,7 +7,7 @@
 //  List the files to check through, and run through each file, creating the output from each.
 $files = array(
 	'./romeo.txt',
-	'./rain.text',
+	'./rain.txt',
 	'./jabberwock.txt',
 	'./alice.txt');
 // I added an additional set of test cases just to make sure the process was working beyond the two examples.
@@ -21,6 +21,7 @@ $expected_results = array(
 // Simple function to take files in and return their most lettered word
 function find_most_lettered_word($path){
 	$contents = file_get_contents($path);
+	assert(!empty($contents));
 	/*
 	The text sample will contain only the alphabetic characters ("a" through "z" and "A" through "Z"), 
 	spaces, and punctuation marks. 
@@ -38,6 +39,7 @@ function find_most_lettered_word($path){
 
 	// Just explode the string into words.
 	$words = explode(' ', $normalized);
+	assert(count($words) > 1);
 
 
 	// Store the winning word (none to start)
@@ -46,12 +48,17 @@ function find_most_lettered_word($path){
 	$max_character_count = 0;
 	// Get a character count per wordletter, store the max character count.
 	foreach($words as $word){
+		// Loop over each character for each word, and try to get more than the max character count
+		foreach(count_chars($word, 1) as $i => $count){
+			if($count>$max_character_count){
+				$winner = $word; // Update the winner.
+			}
+		}
 
 	}
-	// If the max is more than the stored max, change the winning word.
 
 	// return the winning word
-	return null; // 
+	return $winner;
 }
 
 
