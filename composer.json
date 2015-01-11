@@ -1,0 +1,8 @@
+{
+    "require": {
+        "symfony/filesystem": "@stable",
+        "swiftmailer/swiftmailer": "@stable",
+        "propel/propel1": "@stable",
+        "phpunit/phpunit": "@stable"
+    }
+}
