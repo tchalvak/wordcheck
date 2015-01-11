@@ -1,6 +1,9 @@
 <?php
 // Excuse me for over-engineering here slightly to show a more TDD-like process.
 
+mb_internal_encoding('UTF-8'); 
+mb_http_output('UTF-8');
+init_set('default_charset', 'utf-8');
 
 
 
@@ -24,22 +27,16 @@ $expected_results = array(
 function find_most_lettered_word($path){
 	$contents = file_get_contents($path);
 	assert(!empty($contents));
-	/*
-	The text sample will contain only the alphabetic characters ("a" through "z" and "A" through "Z"), 
-	spaces, and punctuation marks. 
-	A letter is considered to be the same letter regardless of whether it appears in uppercase or lowercase. 
-	The words will be separated by spaces, and any punctuation marks should be disregarded.
-	*/
 
 	// Normalize the text first:
 	// Make everything lowercase
-	$normalized = strtolower($contents);
+	$normalized = mb_strtolower($contents);
 	// Strip multiple whitespaces
 	$normalized = preg_replace('/\s+/', ' ',$normalized);
 	// Filter to alphanumeric and spaces
 	$normalized = preg_replace("/[^0-9a-zA-Z ]/", "", $normalized);
 
-	// Just explode the string into words.
+	// explode the string into words.
 	$words = explode(' ', $normalized);
 	assert(count($words) > 1);
 
@@ -65,7 +62,7 @@ function find_most_lettered_word($path){
 
 
 $results = array();
-// Loop over the text cases and get their outputs
+// Loop over the files set at the start of the script and get their winning words
 foreach($files as $index=>$file){
 	$winner = find_most_lettered_word($file);
 	$results[$index] = $winner;
@@ -76,6 +73,6 @@ foreach($expected_results as $index=>$word){
 	if($word !== $results[$index]){
 		echo 'Test failed: expected ['.$word.'] but got ['.$results[$index].']'."\n";
 	} else {
-		echo 'Test of ['.$word.'] passed!'."\n";
+		echo 'Test for ['.$word.'] passed!'."\n";
 	}
 }
